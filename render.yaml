@@ -1,18 +1,18 @@
 databases:
   - name: ObjectDetectiondb
     plan: free
-    databaseName: ObjectDetection
-    user: ObjectDetection
+    databaseName: ides_productdetails
+    user: suvarna
 
 services:
   - type: web
     plan: free
-    name: mysite
+    name: ObjectDetectiondb
     runtime: python
     buildCommand: "./build.sh"
     startCommand: "python -m gunicorn ObjectDetection.asgi:application -k uvicorn.workers.UvicornWorker"
     envVars:
-      - key: DATABASE_URL
+      - key: postgres://suvarna:WtP73JWm7n1DOlCcVAsdngc7xL9DNf5C@dpg-cplbrp0cmk4c739lfam0-a/ides_productdetails
         fromDatabase:
           name: ObjectDetectiondb
           property: connectionString
